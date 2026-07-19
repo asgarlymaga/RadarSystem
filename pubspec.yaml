@@ -1,0 +1,43 @@
+name: tech_radar
+description: "Tech Radar - scans the environment for devices and electrical fields using BLE, Wi-Fi and EMF."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.6.0 <4.0.0'
+  flutter: '>=3.32.0' # SwitchListTile.activeThumbColor requires 3.32+
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+
+  # State management
+  provider: ^6.1.2
+
+  # Persist user settings (BLE range, EMF baseline, alert toggle)
+  shared_preferences: ^2.3.2
+
+  # Mode A - Wireless Radar (BLE)
+  flutter_blue_plus: ^1.32.12
+
+  # Mode B - Network Scanner (Wi-Fi)
+  network_info_plus: ^5.0.3
+
+  # Mode C - Magnetic Field Detector (EMF)
+  sensors_plus: ^5.0.1
+  audioplayers: ^6.1.0
+  vibration: ^3.1.0 # 3.x compiles against a modern compileSdk (34+)
+
+  # Permissions (Location / Bluetooth / Nearby)
+  permission_handler: ^11.3.1
+
+dev_dependencies:
+  flutter_lints: ^4.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/sounds/
