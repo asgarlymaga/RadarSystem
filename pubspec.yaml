@@ -18,6 +18,9 @@ dependencies:
   # Persist user settings (BLE range, EMF baseline, alert toggle)
   shared_preferences: ^2.3.2
 
+  # Location dashboard (GPS). Compass is derived from sensors_plus.
+  geolocator: ^13.0.1
+
   # Mode A - Wireless Radar (BLE)
   flutter_blue_plus: ^1.32.12
 

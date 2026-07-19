@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../features/ble/ble_radar_screen.dart';
 import '../features/emf/emf_detector_screen.dart';
+import '../features/compass/compass_screen.dart';
+import '../features/geo/location_dashboard.dart';
 import '../features/wifi/wifi_scanner_screen.dart';
 import '../theme/app_theme.dart';
 import 'settings_screen.dart';
@@ -33,6 +35,16 @@ class HomeScreen extends StatelessWidget {
               child: ListView(
                 padding: const EdgeInsets.all(20),
                 children: [
+                  const LocationDashboard(),
+                  const SizedBox(height: 18),
+                  _ModeCard(
+                    title: 'COMPASS',
+                    subtitle: 'Heading + bearings to landmarks',
+                    icon: Icons.explore,
+                    color: AppColors.emfRed,
+                    onTap: () => _open(context, const CompassScreen()),
+                  ),
+                  const SizedBox(height: 18),
                   _ModeCard(
                     title: 'WIRELESS RADAR',
                     subtitle: 'BLE • smartwatches, headphones, TVs',
