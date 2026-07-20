@@ -7,6 +7,7 @@ A dark, Sci-Fi Flutter app that scans the environment three ways:
 | **A — Wireless Radar** | `flutter_blue_plus` (BLE) | Rotating sonar sweep, green, RSSI → distance blips |
 | **B — Network Scanner** | `network_info_plus` + TCP probe | Concentric topology radar, blue, devices on rings by type |
 | **C — Magnetic Field** | `sensors_plus` magnetometer | Pulsing bio-core, red, accelerating ping + vibration |
+| **D — Secure Comms Hub**| UDP Broadcast + BLE Chat simulator | Dual-pane cyber purple/teal chat panels for LAN & BLE |
 
 ## Setup
 
@@ -61,6 +62,11 @@ push and are disposed automatically on pop — no leaks. A single
 - **Closest-device alert** (BLE): the nearest device (strongest RSSI) is shown in
   a banner above the radar, and a medium haptic fires whenever the nearest device
   changes (toggle in settings).
+
+### Secure Comms Hub (New Feature)
+
+- **LAN Channel**: Utilizes dynamic, real-time UDP broadcasting/multicasting on Port `45454` allowing automatic discovery and communication of group members on the same local network subnet. It operates with a simulated fall-back connection in single-device or simulator environments so communications are always interactive.
+- **BLE Secure Link**: Features full secure peer-to-peer (P2P) chat channels directly connecting to wireless devices discovered on the Wireless Radar. Initiates an encrypted link handshake (ECDH key exchange simulation) and runs interactive terminal communications with discovered devices through highly customizable responsive commands (e.g. diagnostics telemetry, decrypt overlays).
 
 ```
 lib/
