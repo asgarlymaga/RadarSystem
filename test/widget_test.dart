@@ -11,7 +11,7 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     final prefs = await SharedPreferences.getInstance();
 
-    await tester.pumpWidget(TechRadarApp(settings: SettingsController(prefs)));
+    await tester.pumpWidget(TechRadarApp(settings: SettingsController(prefs), prefs: prefs));
     await tester.pump(); // let the location future settle (no plugin in tests)
 
     expect(find.text('TECH RADAR'), findsOneWidget);

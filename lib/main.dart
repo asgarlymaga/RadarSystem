@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/settings_controller.dart';
 import 'features/geo/location_controller.dart';
+import 'features/comms/comms_controller.dart';
 import 'screens/home_screen.dart';
 import 'theme/app_theme.dart';
 
@@ -18,22 +19,24 @@ Future<void> main() async {
   final prefs = await SharedPreferences.getInstance();
   final settings = SettingsController(prefs);
 
-  runApp(TechRadarApp(settings: settings));
+  runApp(TechRadarApp(settings: settings, prefs: prefs));
 }
 
 class TechRadarApp extends StatelessWidget {
   final SettingsController settings;
-  const TechRadarApp({super.key, required this.settings});
+  final SharedPreferences prefs;
+  const TechRadarApp({super.key, required this.settings, required this.prefs});
 
   @override
   Widget build(BuildContext context) {
-    // SettingsController + LocationController live above MaterialApp so every
+    // SettingsController + LocationController + CommsController live above MaterialApp so every
     // mode shares them. Location loads immediately so the home dashboard is
     // ready when the app opens.
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: settings),
         ChangeNotifierProvider(create: (_) => LocationController()..load()),
+        ChangeNotifierProvider(create: (_) => CommsController(prefs: prefs)),
       ],
       child: MaterialApp(
         title: 'Tech Radar',

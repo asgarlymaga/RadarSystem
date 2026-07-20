@@ -5,6 +5,7 @@ import '../../core/settings_controller.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/radar_view.dart';
 import '../../widgets/status_bar.dart';
+import '../comms/comms_hub_screen.dart';
 import 'ble_controller.dart';
 
 /// Mode A — Wireless Radar (BLE). Sonar-style sweep, green theme.
@@ -33,7 +34,7 @@ class _BleRadarBody extends StatelessWidget {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
       ),
-      builder: (_) => Padding(
+      builder: (modalContext) => Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -62,6 +63,30 @@ class _BleRadarBody extends StatelessWidget {
             _kv('Services advertised', '${d.serviceCount}'),
             _kv('Approx. distance',
                 '${d.estimatedMeters.toStringAsFixed(1)} m  (range ${range.toStringAsFixed(0)} m)'),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                icon: const Icon(Icons.security, color: AppColors.background),
+                label: const Text('SECURE CHAT LINK'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.bleGreen,
+                  foregroundColor: AppColors.background,
+                ),
+                onPressed: () {
+                  Navigator.pop(modalContext); // Dismiss modal sheet
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => CommsHubScreen(
+                        initialBleDeviceId: d.id,
+                        initialBleDeviceName: d.displayName,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),

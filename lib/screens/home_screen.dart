@@ -5,6 +5,7 @@ import '../features/emf/emf_detector_screen.dart';
 import '../features/compass/compass_screen.dart';
 import '../features/geo/location_dashboard.dart';
 import '../features/wifi/wifi_scanner_screen.dart';
+import '../features/comms/comms_hub_screen.dart';
 import '../theme/app_theme.dart';
 import 'settings_screen.dart';
 
@@ -36,6 +37,14 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 children: [
                   const LocationDashboard(),
+                  const SizedBox(height: 18),
+                  _ModeCard(
+                    title: 'SECURE COMMS',
+                    subtitle: 'LAN Broadcast • BLE Chat P2P',
+                    icon: Icons.chat_bubble_outline,
+                    color: Colors.purpleAccent,
+                    onTap: () => _open(context, const CommsHubScreen()),
+                  ),
                   const SizedBox(height: 18),
                   _ModeCard(
                     title: 'COMPASS',
